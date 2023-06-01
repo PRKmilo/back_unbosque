@@ -34,7 +34,34 @@ class GraduatesController < ApplicationController
     telofono: @user.telefono,
     graduate: {
     faculty: @user.graduate.faculty,
-    qualification: @user.graduate.qualification
+    qualification: @user.graduate.qualification,
+    works: @user.graduate.works.map do |work|
+    {
+     id_trabajo: work.id,
+     carge: work.carge,
+     company: work.company,
+     country: work.country,
+     description: work.description,
+     date_contract: work.date_contract
+    }
+    end,
+    academic_title: @user.graduate.academic_titles.map do |title|
+    {
+    id_title: title.id,
+    title: title.title,
+    institucion: title.institucion,
+    country: title.country,
+    description: title.description
+    }
+    end,
+    life_history: @user.graduate.life_histories.map do |history|
+    {
+    id_history: history.id,
+    title: history.title,
+    description: history.description,
+    date: history.date
+    }
+    end
     }
     }
     render json: json_response , status: :ok
