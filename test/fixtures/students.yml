@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  faculty: MyString
+  carerr: MyString
+  state: MyString
+  journey: MyString
+
+two:
+  user: two
+  faculty: MyString
+  carerr: MyString
+  state: MyString
+  journey: MyString
