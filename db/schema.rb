@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_061445) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_043107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_titles", force: :cascade do |t|
+    t.bigint "graduate_id", null: false
+    t.string "title"
+    t.string "description"
+    t.string "institucion"
+    t.string "country"
+    t.integer "year"
+    t.string "title_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["graduate_id"], name: "index_academic_titles_on_graduate_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -33,6 +46,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_061445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_graduates_on_user_id"
+  end
+
+  create_table "life_histories", force: :cascade do |t|
+    t.bigint "graduate_id", null: false
+    t.string "title"
+    t.string "description"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["graduate_id"], name: "index_life_histories_on_graduate_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -62,7 +85,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_061445) do
     t.string "type"
   end
 
+  create_table "works", force: :cascade do |t|
+    t.bigint "graduate_id", null: false
+    t.string "carge"
+    t.string "company"
+    t.string "country"
+    t.string "description"
+    t.string "date_contract"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["graduate_id"], name: "index_works_on_graduate_id"
+  end
+
+  add_foreign_key "academic_titles", "graduates"
   add_foreign_key "admins", "users"
   add_foreign_key "graduates", "users"
+  add_foreign_key "life_histories", "graduates"
   add_foreign_key "students", "users"
+  add_foreign_key "works", "graduates"
 end

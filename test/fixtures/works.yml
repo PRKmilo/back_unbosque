@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  graduate: one
+  carge: MyString
+  company: MyString
+  country: MyString
+  description: MyString
+  date_contract: MyString
+
+two:
+  graduate: two
+  carge: MyString
+  company: MyString
+  country: MyString
+  description: MyString
+  date_contract: MyString
