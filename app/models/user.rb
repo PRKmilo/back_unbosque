@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   validates :email,presence: true, uniqueness: true
   validates :password,presence: true, length: {minimum: 6}
+  validates  :cc,uniqueness: true
   self.inheritance_column = :_type_disabled
   has_one :admin, dependent: :destroy
   has_one :graduate, dependent: :destroy

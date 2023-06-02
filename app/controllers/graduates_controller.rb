@@ -68,11 +68,23 @@ class GraduatesController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      render json: @user, status: :created
+   
+    puts 'ingresando a create'
+    puts params
+    if User.where(cc: params[:cc]).count == 1
+      
+      @user= User.where(cc: params[:cc]).first
+      Graduate.create(user: @user,graduation_year: params[:anioGraduacion],faculty: params[:carrera],qualification: params[:carreraPrograma])
+      puts 'ingresa a true'
+      render json: { message: 'Graduado creado exitosamente' },status: :ok
     else
-      render json: @user.errors, status: :unprocessable_entity
+      puts 'va a guardar usuario-------------------------------------------------------'
+       User.create(id:User.count+1, name: params[:nombreEstudiante],lastname: params[:apellido],email: params[:correoPersonal],edad: params[:edad],cc: params[:cc],direccion: params[:direccion],password: params[:password])
+      puts '-------------------------------------------------------------------------------'
+      @ser= User.where(cc: params[:cc]).first
+      puts '------------------------------------------------------------------------------'
+      Graduate.create(user: @ser,graduation_year: params[:anioGraduacion],faculty: params[:carrera],qualification: params[:carreraPrograma])
+      render json: {message: 'Se genero usuario y graduado'}, status: :ok
     end
   end
 

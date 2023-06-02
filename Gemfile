@@ -11,6 +11,10 @@ gem "bcrypt"
 
 gem 'rack-cors'
 
+gem 'pry'
+gem 'pry-rails'
+
+
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 # Use postgresql as the database for Active Record
